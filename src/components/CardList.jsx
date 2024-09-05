@@ -41,26 +41,31 @@ const CardList = () => {
     
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
-      };
+    };
 
     return (
         <>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-11">
         {/* { 
         pokedex.map((item)=> <Card title={item.name}
         image={item.sprites.other.showdown.front_default}
         button={item.cries.latest}
         type={item.types.map(e => e.type.name + ' ')} 
         key={item.id}/>)
-        } */ <Card myData = {pokemon}/>}
+        } */ 
+        
+        <Card myData = {pokemon}/>}
+        </div>
         <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={handlePageChange}
-      />
+    />
 
         </>
     )
 
 }
+
 
 export default CardList

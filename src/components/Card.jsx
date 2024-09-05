@@ -5,7 +5,7 @@ const Card = ({myData})=> {
 
     
     const [pokedex,setPokedex]=useState([])
- 
+
     const fetchingPokedex = async ()=> {
 
         try {
