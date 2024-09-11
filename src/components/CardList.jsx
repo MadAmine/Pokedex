@@ -11,8 +11,7 @@ const CardList = () => {
     const totalPages = Math.ceil(1302 / elementsPerPage);
 
 
-
-
+    
     const fetchingPokemon = async ()=>{
         try{
         const data = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${(currentPage-1)*elementsPerPage}&limit=${elementsPerPage}`)
