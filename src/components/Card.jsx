@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react"
 import TypeColor from "./TypeColors"
 import Pokeball from '../assets/5.png'
-import Popup from "./PopUp"
+import Popup from "./Popup"
 const Card = ({myData})=> {
 
     
