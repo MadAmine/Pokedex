@@ -1,6 +1,7 @@
 import Card from "./Card"
 import { useEffect,useState } from "react"
 import Pagination from "./Pagination"
+import LoadingScreen from "./LoadingScreen"
 // eslint-disable-next-line react/prop-types
 const CardList = () => {
     
@@ -9,10 +10,12 @@ const CardList = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const elementsPerPage = 20;
     const totalPages = Math.ceil(1302 / elementsPerPage);
+    
 
 
     
     const fetchingPokemon = async ()=>{
+        
         try{
         const data = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${(currentPage-1)*elementsPerPage}&limit=${elementsPerPage}`)
         const jsData = await data.json();
@@ -44,6 +47,7 @@ const CardList = () => {
 
     return (
         <>
+        
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-11">
         {/* { 
         pokedex.map((item)=> <Card title={item.name}

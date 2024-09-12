@@ -2,12 +2,13 @@ import { useRef, useState, useEffect } from "react"
 import TypeColor from "./TypeColors"
 import Pokeball from '../assets/5.png'
 import Popup from "./Popup"
+import LoadingScreen from "./LoadingScreen"
 const Card = ({myData})=> {
 
     
     const [pokedex,setPokedex]=useState([])
 
-
+    const [loading, setLoading] = useState(false);
 
     const [showPopup,setShowPopup] = useState(null);
 
@@ -25,7 +26,7 @@ const Card = ({myData})=> {
 
 
     const fetchingPokedex = async ()=> {
-
+        setLoading(true)
         try {
             const arr = [] 
             for(let i=0;i<myData.length;i++){
@@ -40,6 +41,8 @@ const Card = ({myData})=> {
             console.log("===>",pokedex[0])
         } catch (error) {
             console.log(error.message)
+        }finally{
+            setLoading(false)
         }
 
     }
@@ -58,6 +61,7 @@ const Card = ({myData})=> {
     
     return (
         <>
+        {loading && <LoadingScreen />}
         {pokedex.map((item)=>(
             
             
