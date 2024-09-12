@@ -36,9 +36,7 @@ const Card = ({myData})=> {
                 arr.push(jsonData)
                 
             }
-            console.log(arr)
             setPokedex(arr)
-            console.log("===>",pokedex[0])
         } catch (error) {
             console.log(error.message)
         }finally{

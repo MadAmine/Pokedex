@@ -13,7 +13,8 @@ const Popup = ({ specieUrl, item, onClose }) => {
         useEffect(()=>{
             fetchSpecies()
         },[])
-        console.log(specie)
+        
+        const description = specie?.flavor_text_entries.find(e=> e.language.name === 'en')
 
 
     return (
@@ -93,7 +94,7 @@ const Popup = ({ specieUrl, item, onClose }) => {
                     
                     {/* Description */}
                     <div className="mt-4 p-2 bg-gray-50 text-sm text-gray-700 rounded shadow-inner">
-                        {specie?.flavor_text_entries[0]?.flavor_text}
+                        {description?.flavor_text}
                     </div>
                     <div className="mt-4 p-2  h-32 w-full  bg-gray-50 text-sm text-gray-700 rounded shadow-inner">
                         <h1> <b>BASE STATS </b></h1>

@@ -21,7 +21,6 @@ const CardList = () => {
         const jsData = await data.json();
         
         setPokemon(jsData.results)
-        console.log(pokemon)
         
         
         }catch(error){
