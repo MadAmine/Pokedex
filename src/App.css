@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -16,6 +18,16 @@
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.press-start-2p-regular {
+  font-family: "Press Start 2P", system-ui;
+  font-style: normal;
+}
+.press-start-2p-small {
+  font-family: "Press Start 2P", system-ui;
+  font-size: 10px;
+  font-style: normal;
 }
 
 @keyframes logo-spin {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import TypeColor from "./TypeColors";
 
-const Popup = ({ specieUrl, item, onClose }) => {
+const Popup = ({ specieUrl, item, onClose, pokePalette }) => {
 
         const [specie, setSpecie] = useState(null)
         
@@ -54,39 +54,46 @@ const Popup = ({ specieUrl, item, onClose }) => {
                 {/* Top Bar */}
                 <div className="flex justify-between items-center bg-red-400 text-white px-2 py-1 rounded-t-lg">
                     <div className="flex space-x-2">
-                        <button className="bg-blue-500 px-2 py-1 rounded">INFO</button>
-                        <button className="bg-gray-100 text-black px-2 py-1 rounded">AREA</button>
-                        <button className="bg-gray-100 text-black px-2 py-1 rounded">FORMS</button>
+                        <button className=" px-2 py-1 rounded press-start-2p-regular" 
+                        style={{textShadow : "2px 0 gray, -2px 0 gray, 0 2px gray, 0 -2px gray, 1px 1px gray, -1px -1px gray, 1px -1px gray, -1px 1px gray"}}
+
+                        >INFO</button>
+                        <button className=" text-black px-2 py-1 press-start-2p-regular rounded"
+                        style={{textShadow : "2px 0 gray, -2px 0 gray, 0 2px gray, 0 -2px gray, 1px 1px gray, -1px -1px gray, 1px -1px gray, -1px 1px gray"}}
+                        >AREA</button>
+                        <button className=" text-black px-2 py-1 press-start-2p-regular rounded"
+                        style={{textShadow : "2px 0 gray, -2px 0 gray, 0 2px gray, 0 -2px gray, 1px 1px gray, -1px -1px gray, 1px -1px gray, -1px 1px gray"}}
+                        >FORMS</button>
                     </div>
-                    <button onClick={onClose} className="bg-gray-100 text-black px-2 py-1 rounded">X</button>
+                    <button onClick={onClose} className=" text-red-950 px-2 py-1 rounded press-start-2p-regular">X</button>
                 </div>
 
                 {/* Main Content */}
                 <div className="flex flex-col items-center  bg-white mt-0 p-2 rounded-b-lg">
                     {/* Image and Basic Info */}
                     <div className="flex items-center justify-evenly w-full">
-                        <img src={item.sprites.front_default} alt={item.name} className="w-24 h-24" />
+                        <img src={item.sprites.other.home.front_default ? item.sprites.other.home.front_default : item.sprites.front_default} alt={item.name} className="w-40 h-40" />
                         <div className="flex flex-col ml-4">
-                            <div className="text-red-500 font-bold">#{item.id.toString().padStart(3, '0')}  {item.name.toUpperCase()}</div>
+                            <div className="text-red-500 font-bold press-start-2p-regular">#{item.id.toString().padStart(3, '0')}  {item.name.toUpperCase()}</div>
                             <div className="text-xs text-gray-600"><b>Abilities : </b> {item.abilities.map((e,index)=><p key={index}>{e.ability.name}</p>)} </div>
                         </div>
                     </div>
                     
                     {/* Additional Info */}
-                    <div className="mt-2 w-full flex justify-around bg-gray-100 p-2 rounded">
+                    <div className="mt-2 w-full flex justify-around p-2 rounded" style={{background : `${pokePalette[1]}`}}>
                         <div className="text-center">
-                            <div className="text-xs text-gray-600">HT</div>
-                            <div className="text-sm">{item.height} m</div>
+                            <div className=" press-start-2p-small mb-2" style={{color : `${pokePalette[2]}`}}>HT</div>
+                            <div className=" press-start-2p-small" style={{color : `${pokePalette[2]}`}}>{item.height} m</div>
                         </div>
                         <div className="text-center">
-                            <div className="text-xs text-gray-600">WT</div>
-                            <div className="text-sm">{item.weight} kg</div>
+                            <div className=" text-gray-600 press-start-2p-small mb-2">WT</div>
+                            <div className=" press-start-2p-small">{item.weight} kg</div>
                         </div>
                         <div className="text-center">
-                            <div className="text-xs text-gray-600">TYPE</div>
-                            <div className="flex space-x-1">
+                            <div className="text-xs text-gray-600 press-start-2p-regular">TYPE</div>
+                            <div className="flex space-x-1 press-start-2p-small">
                                 {item.types.map((e, index) => (
-                                    <TypeColor key={index} content={e.type.name}/>
+                                    <TypeColor  key={index} content={e.type.name}/>
                                 ))}
                             </div>
                         </div>

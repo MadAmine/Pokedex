@@ -34,7 +34,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     }
   
     return (
-      <nav className="flex justify-center my-4">
+      <nav className="flex mt-14 justify-center my-4">
         <ul className="inline-flex space-x-2">
           <li>
             <button

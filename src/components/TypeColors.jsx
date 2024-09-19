@@ -34,12 +34,15 @@ const TypeColor = ({content}) => {
         width : '100px',
         height : '37px',
         margin : '5px',
+        alignContent : 'center',
         color: matchingColor ? 'white' : 'black',
         backgroundColor: matchingColor ? matchingColor.color : 'transparent',
         borderTop: `5px solid ${matchingColor.darkColor}`,
         borderBottom: `5px solid ${matchingColor.lightColor}`,
         borderRight: `5px solid ${matchingColor.darkColor}`,
         borderLeft: `5px solid ${matchingColor.lightColor}`,
+
+
     };
 
 
