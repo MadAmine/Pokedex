@@ -76,6 +76,7 @@ const Card = ({myData})=> {
         setColors({});
 
         const fetchColors = async () => {
+        setLoading(true)
         const colorPromises = pokedex.map(async (item) => {
         const result = await prominent(item.sprites.other.home.front_default ? item.sprites.other.home.front_default : item.sprites.other.dream_world.front_default || Pokeball, { amount: 4, format: 'hex', group: 55 });
         return  { id: item.id, color: result } 
@@ -90,7 +91,7 @@ const Card = ({myData})=> {
         }, {});
 
         setColors(colorsObject); // Store fetched colors
-
+        setLoading(false)
         
         
         
@@ -139,11 +140,11 @@ console.log(colors)
                     {/* <b className="  ">Type :</b> 
                 
                     {item.types.map((e,index) => (<TypeColor key={index} content={e.type.name}/>))} */}
-                    <a className="flex text-xs border px-3 my-auto py-2  border-amber-500 group hover:bg-amber-300 rounded-xss transition-all duration-200">
+                    <a className="flex text-xs border px-3 my-auto py-2  border-amber-500 group hover:bg-amber-300 rounded-xss transition-all duration-200" onClick={(e)=>{e.stopPropagation()
+                            playAudio(item)}}>
                         <div className="press-start-2p-regular text-xxs text-[#FFCB05] group-hover:text-white delay-100 " 
                         style={{textShadow : "2px 0 #003a70, -2px 0 #003a70, 0 2px #003a70, 0 -2px #003a70, 1px 1px #003a70, -1px -1px #003a70, 1px -1px #003a70, -1px 1px #003a70"}}
-                        onClick={(e)=>{e.stopPropagation()
-                            playAudio(item)}}>
+                        >
                             Play me !
                         </div>
                     </a>
