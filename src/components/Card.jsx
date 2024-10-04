@@ -8,7 +8,7 @@ import { prominent } from "color.js"
 
 
 
-const Card = ({myData})=> {
+const Card = ({myData, searched})=> {
 
 
     const [pokedex,setPokedex]=useState([])
@@ -31,6 +31,7 @@ const Card = ({myData})=> {
 
     const fetchingPokedex = async ()=> {
         setLoading(true)
+        if (searched==false){
         try {
             const arr = [] 
             for(let i=0;i<myData.length;i++){
@@ -46,6 +47,9 @@ const Card = ({myData})=> {
         }finally{
             setLoading(false)
         }
+    } else {
+        setPokedex(myData)
+    }
 
     }
     useEffect(() => {
@@ -102,7 +106,7 @@ const Card = ({myData})=> {
     }, [pokedex]);
 
 
-console.log(colors)
+// console.log(colors)
 
 
 
@@ -175,7 +179,7 @@ console.log(colors)
     
     
     ))}
-    {console.log(showPopup)}
+    {/* {console.log(showPopup)} */}
     {showPopup && <Popup item={showPopup} specieUrl={showPopup.species.url} pokePalette={colors[showPopup.id]} onClose={handleClosePopup} />}
         </>
     )

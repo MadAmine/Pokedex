@@ -2,17 +2,20 @@ import Card from "./Card"
 import { useEffect,useState } from "react"
 import Pagination from "./Pagination"
 import LoadingScreen from "./LoadingScreen"
+import Header from "./Header"
 // eslint-disable-next-line react/prop-types
 const CardList = () => {
     
     
     const [pokemon,setPokemon]=useState([])
+  
+    
+    const [searchTerm, setSearchTerm] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
+
     const [currentPage, setCurrentPage] = useState(1);
     const elementsPerPage = 20;
     const totalPages = Math.ceil(1302 / elementsPerPage);
-    
-
-
     
     const fetchingPokemon = async ()=>{
         
@@ -22,27 +25,42 @@ const CardList = () => {
         
         setPokemon(jsData.results)
         
-        
         }catch(error){
         console.log(error.message)
         }
     }
 
+
+    const handleSearch = async (term) => {
+        setSearchTerm(term);
+        if (term) {
+          try {
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${term.toLowerCase()}`);
+            const data = await response.json();
+            setSearchResults([data]);
+            
+          } catch (error) {
+            setSearchResults([]);
+            console.log(error.message)
+          }
+        } else {
+          fetchingPokemon(); // Reset to first page when no search term
+        }
+      };
+
     
     useEffect(
         ()=>{
-        // fetch('https://pokeapi.co/api/v2/pokemon/')
-        // .then(res => {return res.json()})
-        // .then(result => {result.results.forEach(element => {
-        //   fetch(element.url).then(res=> { return res.json()}).then(result=>{setPokedex([...pokedex,result])})
-        // });})
-        fetchingPokemon()
-        
-    },[currentPage])  
+            if(!searchTerm){
+        fetchingPokemon()    
+            } 
+    },[currentPage,searchTerm])  
     
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
+
+console.log(searchResults)
 
 
 
@@ -51,23 +69,22 @@ const CardList = () => {
     
     return (
         <>
-        
+        <Header  onSearch={handleSearch} title={"POKEDEX"}/>
+        {searchTerm && searchResults.length ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-11">
-        {/* { 
-        pokedex.map((item)=> <Card title={item.name}
-        image={item.sprites.other.showdown.front_default}
-        button={item.cries.latest}
-        type={item.types.map(e => e.type.name + ' ')} 
-        key={item.id}/>)
-        } */ 
+        {<Card myData = {searchResults} searched={true}/>}
         
-        <Card myData = {pokemon}/>}
-        </div>
+        </div>) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-11">
+        {<Card myData = {pokemon} searched={false}/>}
         <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={handlePageChange}
     />
+        </div>
+        )}
+        
 
         </>
     )

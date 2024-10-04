@@ -1,6 +1,7 @@
 import logo from '../assets/3.svg'
+import SearchBar from './SearchBar';
 
-const Header = ({ title, subtitle }) => {
+const Header = ({ title, subtitle, onSearch }) => {
 
   return (
     <header className="bg-white shadow-md">
@@ -12,6 +13,7 @@ const Header = ({ title, subtitle }) => {
             <p className="text-sm text-gray-600">{subtitle}</p>
           </div>
         </div>
+        <SearchBar onSearch={onSearch}/>
       </div>
     </header>
   );

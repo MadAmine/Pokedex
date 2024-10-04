@@ -12,7 +12,6 @@ const App = ()=>{
 
   return (
     <>
-      <Header title={"POKEDEX"}></Header>
       <CardList />
     </> 
   )
