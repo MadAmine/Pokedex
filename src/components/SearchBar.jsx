@@ -3,19 +3,16 @@ import { FiSearch } from 'react-icons/fi'
 
 const SearchBar = ({onSearch}) => {
 
-const [inputValue,setInputValue] = useState({})
 
 
 const handleInputChange = (e) => {
-    setInputValue(e.target.value);
+    onSearch(e.target.value);
     // if (onSearch) {
     //   onSearch(e.target.value); // Call the prop function with the new input value
     // }
   };    
 
-const handleSearch = () =>{
-    onSearch(inputValue)
-}
+
 // const fetchSearched = () =>{
  
 //     try{
@@ -47,7 +44,7 @@ const handleSearch = () =>{
         />
         <button
             className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
-            onClick={handleSearch}
+            
         >
             <FiSearch size={20} /> {/* Icon size can be adjusted */}
         </button>

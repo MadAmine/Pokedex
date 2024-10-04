@@ -31,7 +31,7 @@ const Card = ({myData, searched})=> {
 
     const fetchingPokedex = async ()=> {
         setLoading(true)
-        if (searched==false){
+        
         try {
             const arr = [] 
             for(let i=0;i<myData.length;i++){
@@ -47,9 +47,6 @@ const Card = ({myData, searched})=> {
         }finally{
             setLoading(false)
         }
-    } else {
-        setPokedex(myData)
-    }
 
     }
     useEffect(() => {
