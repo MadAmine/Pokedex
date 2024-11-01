@@ -39,7 +39,7 @@ const handleInputChange = (e) => {
             type="text"
             onChange={handleInputChange}
             placeholder="Search..."
-            className="border border-gray-300 rounded-lg py-2 px-4 w-full md:w-64 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10"
+            className="border border-gray-300 bg-[#a5dcdc] rounded-lg py-2 px-4 w-full md:w-64 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10"
             // Added padding-right (pr-10) to make space for the icon
         />
         <button
